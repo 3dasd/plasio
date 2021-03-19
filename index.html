@@ -1,378 +1,371 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<title>plas.io</title>
-		<meta charset="utf-8">
-		<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
-		<link rel="stylesheet" href="css/style.css" type="text/css">
-		<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
-		<link href='https://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
-	</head>
-	<body data-custom-load="true" data-name="plasio_laszip"
-		data-tools="" data-configs="" data-path="">
-		<div class="fullscreen">
-			<div class="title">
-				<div class="name">plas.io</div>
-				<div id="no-support">Sorry, your browser does not support WebGL. <a href="http://get.webgl.org">Find out more</a>.</div>
+
+<head>
+	<title>Examples | 3dasd</title>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="css/style.css" type="text/css">
+	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<link href='https://fonts.googleapis.com/css?family=Archivo+Black' rel='stylesheet' type='text/css'>
+</head>
+
+<body data-custom-load="true" data-name="plasio_laszip" data-tools="" data-configs="" data-path="">
+	<div class="fullscreen">
+		<div class="title">
+			<div class="name">powered by plas.io...</div>
+			<div id="no-support">Sorry, your browser does not support WebGL. <a href="http://get.webgl.org">Find out
+					more</a>.</div>
+		</div>
+	</div>
+	<div id="progressBar" style="display: none">
+	</div>
+
+	<div class="drag-and-drop" style="display: none">
+		<div class="title">
+			Drop Here!
+		</div>
+	</div>
+	<div class="ui-layout-center">
+		<div id="container"></div>
+		<div id="fps"></div>
+		<div id="messages"></div>
+		<div id="pointCount"></div>
+		<div id="credits" style="display: none"></div>
+	</div>
+	<div class="ui-layout-east">
+		<div class="section">
+			<div class="p-body">
+				<a href="https://3dasd.com">3dasd</a> example scans. Viewer is powered by <a
+					href="https://plas.io">plas.io</a>.
 			</div>
 		</div>
-		<div id="progressBar" style="display: none">
-		</div>
 
-		<div class="drag-and-drop" style="display: none">
-			<div class="title">
-				Drop Here!
-			</div>
-		</div>
-		<div class="ui-layout-center">
-			<div id="container"></div>
-			<div id="fps"></div>
-			<div id="messages"></div>
-			<div id="pointCount"></div>
-            <div id="credits" style="display: none"></div>
-		</div>
-		<div class="ui-layout-east">
-			<input id="filebrowser" type="file" style="display:none" multiple>
-			<div id="mainActions">
-				<div class="title">
-					<h1>plas.io</h1>
-					<a href="https://github.com/verma/plasio"><img style="position: absolute; top: 0; right: 0; border: 0; width:128px; height: 128px;" src="https://github-camo.global.ssl.fastly.net/e7bbb0521b397edbd5fe43e7f760759336b5e05f/68747470733a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67" alt="Fork me on GitHub" data-canonical-src="https://s3.amazonaws.com/github/ribbons/forkme_right_green_007200.png"></a>
+
+		<input id="filebrowser" type="file" style="display:none" multiple>
+		<div id="mainActions">
+			<div class="section">
+				<div id="webglinfo" style="display: none"> </div>
+				<div class="p-head">
+					<h3>Pick an example</h3>
 				</div>
-				<div class="section">
-					<div id="webglinfo" style="display: none"> </div>
-					<div class="p-head">
-						<h3>File</h3>
-					</div>
-					<div class="p-body">
-						<div id="naclerror" style="display: none"> </div>
-						<div class="labeled-controls">
-							<a class='doc-tag' href="docs/open-a-file.json"><span class="glyphicon glyphicon-question-sign"></span></a>
-							<h4>Choose data to display</h4>
-							<h5>Pick your own or click the dropdown for some examples</h5>
-							<div class="btn-group btn-block" id="browseCancel" style="display: none">
-								<button type="button" class="btn btn-default btn-sm">Cancel</button>
-							</div>
-							<div class="btn-group btn-block" id="browse">
-								<button type="button" class="btn btn-default btn-sm btn-file dropdown-lead">
-									Browse
-								</button>
-								<button type="button" class="btn btn-default btn-sm dropdown-toggle" data-toggle="dropdown">
-									<span class="caret"></span>
-									<span class="sr-only">Toggle Dropdown</span>
-								</button>
-								<ul class="dropdown-menu btn-block" role="menu">
-									<li><a href="data/st-helens.laz">St. Helens</a></li>
-									<li><a href="data/half-dome.laz">Half Dome</a></li>
-									<li><a href="data/autzen.laz">Autzen Stadium</a></li>
-									<li><a href="data/spaceshuttle.laz">Space Shuttle</a></li>
-									<li><a href="data/jack.laz">Jack : The Giant Slayer</a></li>
-									<li><a href="data/mapserver-family-portrait.laz">Mapserver Family Potrait</a></li>
-									<li><a href="data/iowa-bridge.laz">Cedar Falls, IA University Ave</a></li>
-								</ul>
-							</div>
-							<div id="loadingStatus" class="pull-left"></div>
-							<div id="creditsLink">
-								<a data-toggle="modal" href="#" data-target="#creditsPage">Data Credits</a>
-							</div>
-							<!--
-                            <div id="gh-container">
-							<h5>Open a Greyhound Source</h5>
-                            <div id="openGreyhoundButton"></div>
-                            </div>
-                            -->
+				<div class="p-body">
+					<div id="naclerror" style="display: none"> </div>
+					<div class="labeled-controls">
+						<h4>Choose an example to display</h4>
+						<h5>Pick your own or click the dropdown for some examples</h5>
+						<div class="btn-group btn-block" id="browseCancel" style="display: none">
+							<button type="button" class="btn btn-default btn-sm">Cancel</button>
 						</div>
-
-						<div class="labeled-controls">
-							<a class='doc-tag' href="docs/density.json"><span class="glyphicon glyphicon-question-sign"></span></a>
-							<h4>Density</h4>
-							<h5>Set the load density. Smaller values load and display faster.
-							 Reopen the file to load at new density.</h5>
-							<div id="loadFidelity"></div>
-						</div>
-						<div id="loadError"></div>
-						<div class="props" style="display:none">
-							<div class="labeled-controls">
-								<h4>Data Set</h4>
-								<h5 class='switch-inst'>Switch between multiple data-sets</h5>
-								<div id="multi-files"></div>
-								<div class="auto-play" style="display: none">
-									<h5>Adjust the slider to auto-switch the files</h5>
-									<div id="playback-rate"></div>
-									<div id='playback-fps'></div>
-								</div>
-								<table class="table">
-								</table>
-							</div>
-						</div>
-
-						<div class="labeled-controls">
-							<h4>For scale objects</h4>
-							<a class='doc-tag' href="docs/for-scale-objects.json"><span class="glyphicon glyphicon-question-sign"></span></a>
-							<h5>Place the <span class='noun'>Empire State Building</span> by ALT (OPTION on Mac OS X) + Double-Clicking anywhere on the point cloud.</h5>
-							<button type="button" class="btn btn-sm btn-default btn-block" id="scale-geoms-clear">Clear All Objects</button>
-							<h5 class='not-first'>Change your world units so that for-scale object sizes are still relevant</h5>
-							<div class="btn-group btn-block" id="scale-geoms-scale">
-								<button type="button" class="btn btn-sm btn-default dropdown-toggle btn-block" data-toggle="dropdown" target="meters"> Meters <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu btn-block" role="menu">
-									<li><a href="#meters">Meters</a></li>
-									<li><a href="#feet">Feet</a></li>
-									<li><a href="#inches">Inches</a></li>
-								</ul>
-							</div>
+						<div class="btn-group" id="browse">
+							<button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+								Select
+								<span class="caret"></span>
+								<span class="sr-only">Toggle Dropdown</span>
+							</button>
+							<ul class="dropdown-menu" role="menu">
+								<li><a href="data/warehouse.las">Warehouse</a></li>
+								<li><a href="data/apartment.las">My apartment</a></li>
+							</ul>
 						</div>
 					</div>
+					<div id="loadingStatus" class="pull-left"></div>
 				</div>
 
-				<div class="section">
-					<div class="p-head">
-						<h3>Camera</h3>
-					</div>
-					<div class="p-body">
-						<div class="labeled-controls">
-							<h4>Type</h4>
-							<h5>Perspective camera provides a 3D view, while orthographic and top-view cameras provide an ortho views</h5>
-							<div class="btn-group btn-group-sm btn-block" id="camera-type-group">
-								<button type="button" class="btn btn-default" id="perspective">Perspective</button>
-								<button type="button" class="btn btn-default" id="ortho">Orthographic</button>
-								<button type="button" class="btn btn-default" id="top-view">Top-View</button>
-							</div>
-							<h4 class="not-first">Reset</h4>
-							<h5>Take view back to its initial state</h5>
-							<button type="button" class="btn btn-sm btn-default btn-block" id="camera-reset">Reset View</button>
-							<h4 class="not-first">Field of View</h4>
-							<h5>Changing Field of View provides interesting effects, only applies to Perspective Cameras</h5>
-							<div id="fov"></div>
-						</div>
-
-						<div class="labeled-controls">
-							<h4>Clipping Regions</h4>
-							<h5>Choose alternate ways of viewing data</h5>
-							<div id="clipping-regions"></div>
-						</div>
-					</div>
+				<div class="labeled-controls">
+					<a class='doc-tag' href="docs/density.json"><span
+							class="glyphicon glyphicon-question-sign"></span></a>
+					<h4>Density</h4>
+					<h5>Set the load density. Smaller values load and display faster.
+						Reopen the file to load at new density.</h5>
+					<div id="loadFidelity"></div>
 				</div>
-
-				<div class="section">
-					<div class="p-head">
-						<h3>Data</h3>
-					</div>
-					<div class="p-body">
-						<div class="labeled-controls" id="points-list">
-							<h4>Measurement</h4>
-							<h5>Measurement segments currently in view area</h5>
-							<button type="button" class="btn btn-sm btn-default btn-block" id="mensuration-reset">Reset</button>
-							<div id="points-list-table">
-							</div>
+				<div id="loadError"></div>
+				<div class="props" style="display:none">
+					<div class="labeled-controls">
+						<h4>Data Set</h4>
+						<h5 class='switch-inst'>Switch between multiple data-sets</h5>
+						<div id="multi-files"></div>
+						<div class="auto-play" style="display: none">
+							<h5>Adjust the slider to auto-switch the files</h5>
+							<div id="playback-rate"></div>
+							<div id='playback-fps'></div>
 						</div>
-						<div class="labeled-controls">
-							<h4>Particle Size</h4>
-							<h5>Larger sizes fill in the display</h5>
-							<div id="pointsize"></div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Z-Exaggeration</h4>
-							<h5>Higher values make elevation deltas more apparent</h5>
-							<div id="zscale"></div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Colorization</h4>
-							<h5>Choose an attribute to colorize</h5>
-							<div class="btn-group btn-block" id="colorsource">
-								<button type="button" class="btn btn-sm btn-default btn-block dropdown-toggle" data-toggle="dropdown" target="rgb">
-									RGB <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu btn-block" role="menu">
-									<li><a href="#rgb">RGB</a></li>
-									<li><a href="#classification">Classification</a></li>
-									<li><a class="default-if-no-color" href="#heightmap-color">Heightmap Color</a></li>
-									<li><a href="#heightmap-color-inv">Heightmap Color Inverted</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Colormap</h4>
-							<h5>Color gradient values used for Heightmap Color and Classification color sources</h5>
-							<div class='btn-group btn-group-justified' id="colorSwatches">
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/blue-red.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/blue-hue.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/blue-orange.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/heat-map.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/awesome-green.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/pestel-shades.png" width="100%" height="10">
-								</a>
-								<a type="button" class="btn btn-default btn-sm">
-									<img src="colormaps/black-orange.png" width="100%" height="10">
-								</a>
-							</div>
-							<div id="colorCanvas">
-								<canvas id="colorCanvasObject"></canvas>
-							</div>
-							<div id="colormapClamp"></div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Intensity Source</h4>
-							<h5>Color modulators, modulation can be played with</h5>
-							<div class="btn-group btn-block" id="intensitysource">
-								<button type="button" class="btn btn-sm btn-default btn-block dropdown-toggle" data-toggle="dropdown" target="intensity">
-									Intensity <span class="caret"></span>
-								</button>
-								<ul class="dropdown-menu btn-block" role="menu">
-									<li><a href="#intensity">Intensity</a></li>
-									<li><a href="#heightmap">Heightmap Grayscale</a></li>
-									<li><a href="#heightmap-inv">Heightmap Grayscale Inverted</a></li>
-								</ul>
-							</div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Intensity Blending</h4>
-							<h5>How much of intensity to blend with color</h5>
-							<div id="blending"></div>
-							<div class="clearfix blend-factor">
-								<div class="pull-left">All Color</div>
-								<div class="pull-right">All Intensity</div>
-							</div>
-						</div>
-						<div class="labeled-controls">
-							<h4>Intensity Scaling</h4>
-							<h5>Narrow down on a range of intensity values, only applies to intensity values fetch from point source</h5>
-							<div id="intensity"></div>
-						</div>
-					</div>
-				</div>
-
-				<div class="section">
-					<div class="p-head">
-						<h3>Utilities</h3>
-					</div>
-					<div class="p-body">
-						<div class="labeled-controls">
-							<h4>Inundation</h4>
-							<h5>Enable an Inundation Plane and manipulate it using a slider</h5>
-							<div id="inun-container"></div>
-						</div>
+						<table class="table">
+						</table>
 					</div>
 				</div>
 			</div>
 		</div>
 
-		<div id="listener"></div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="creditsPage" tabindex="-1" role="dialog" aria-labelledby="creditsPageModal" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						 <h4 class="modal-title">plas.io Data Credits</h4>
-
+		<div class="section">
+			<div class="p-head">
+				<h3>Camera</h3>
+			</div>
+			<div class="p-body">
+				<div class="labeled-controls">
+					<h4>Type</h4>
+					<h5>Perspective camera provides a 3D view, while orthographic and top-view cameras provide an
+						ortho views</h5>
+					<div class="btn-group btn-group-sm btn-block" id="camera-type-group">
+						<button type="button" class="btn btn-default" id="perspective">Perspective</button>
+						<button type="button" class="btn btn-default" id="ortho">Orthographic</button>
+						<button type="button" class="btn btn-default" id="top-view">Top-View</button>
 					</div>
-					<div class="modal-body">
-						<h4>The following data files are to be credited by their original source</h4>
-						<ul>
-							<li>Autzen Stadium -- <a href="http://www.linkedin.com/pub/aaron-reyna/82/619/894">Aaron Reyna</a>, <a href="http://www.watershedsciences.com/">Watershed Sciences, Inc.</a>
-							</li>
-							<li>St. Helens -- <a href="http://www.linkedin.com/in/howardbutler">Howard Butler</a>, <a href="http://hobu.co">Hobu, Inc.</a>. USGS LiDAR + NAIP.
-							</li>
-							<li>Half Dome -- <a href="http://www.linkedin.com/in/howardbutler">Howard Butler</a>, <a href="http://hobu.co">Hobu, Inc.</a> USGS LiDAR + NAIP.
-							</li>
+					<h4 class="not-first">Reset</h4>
+					<h5>Take view back to its initial state</h5>
+					<button type="button" class="btn btn-sm btn-default btn-block" id="camera-reset">Reset
+						View</button>
+					<h4 class="not-first">Field of View</h4>
+					<h5>Changing Field of View provides interesting effects, only applies to Perspective Cameras
+					</h5>
+					<div id="fov"></div>
+				</div>
 
-							<li>Space Shuttle -- Data courtesy of the Smithsonian National Air and Space Museum, Steven F. Udvar-Hazy Center and the U.S. Army Corps of Engineers,  <a href="http://www.crrel.usace.army.mil/">Cold Regions Research and Engineering Laboratory</a>.
-							</li>
-                            <li>Cedar Falls, IA University Ave -- Iowa DOT</li>
+				<div class="labeled-controls hidden">
+					<h4>Clipping Regions</h4>
+					<h5>Choose alternate ways of viewing data</h5>
+					<div id="clipping-regions"></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="section">
+			<div class="p-head">
+				<h3>Data</h3>
+			</div>
+			<div class="p-body">
+				<div class="labeled-controls hidden" id="points-list">
+					<h4>Measurement</h4>
+					<h5>Measurement segments currently in view area</h5>
+					<button type="button" class="btn btn-sm btn-default btn-block" id="mensuration-reset">Reset</button>
+					<div id="points-list-table">
+					</div>
+				</div>
+				<div class="labeled-controls">
+					<h4>Particle Size</h4>
+					<h5>Larger sizes fill in the display</h5>
+					<div id="pointsize"></div>
+				</div>
+				<div class="labeled-controls hidden">
+					<h4>Z-Exaggeration</h4>
+					<h5>Higher values make elevation deltas more apparent</h5>
+					<div id="zscale"></div>
+				</div>
+				<div class="labeled-controls">
+					<h4>Colorization</h4>
+					<h5>Choose an attribute to colorize</h5>
+					<div class="btn-group btn-block" id="colorsource">
+						<button type="button" class="btn btn-sm btn-default btn-block dropdown-toggle"
+							data-toggle="dropdown" target="rgb">
+							RGB <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu btn-block" role="menu">
+							<li><a href="#rgb">RGB</a></li>
+							<li><a href="#classification">Classification</a></li>
+							<li><a class="default-if-no-color" href="#heightmap-color">Heightmap Color</a></li>
+							<li><a href="#heightmap-color-inv">Heightmap Color Inverted</a></li>
 						</ul>
 					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+				<div class="labeled-controls">
+					<h4>Colormap</h4>
+					<h5>Color gradient values used for Heightmap Color and Classification color sources</h5>
+					<div class='btn-group btn-group-justified' id="colorSwatches">
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/blue-red.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/blue-hue.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/blue-orange.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/heat-map.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/awesome-green.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/pestel-shades.png" width="100%" height="10">
+						</a>
+						<a type="button" class="btn btn-default btn-sm">
+							<img src="colormaps/black-orange.png" width="100%" height="10">
+						</a>
+					</div>
+					<div id="colorCanvas">
+						<canvas id="colorCanvasObject"></canvas>
+					</div>
+					<div id="colormapClamp"></div>
+				</div>
+				<div class="labeled-controls hidden">
+					<h4>Intensity Source</h4>
+					<h5>Color modulators, modulation can be played with</h5>
+					<div class="btn-group btn-block" id="intensitysource">
+						<button type="button" class="btn btn-sm btn-default btn-block dropdown-toggle"
+							data-toggle="dropdown" target="intensity">
+							Intensity <span class="caret"></span>
+						</button>
+						<ul class="dropdown-menu btn-block" role="menu">
+							<li><a href="#intensity">Intensity</a></li>
+							<li><a href="#heightmap">Heightmap Grayscale</a></li>
+							<li><a href="#heightmap-inv">Heightmap Grayscale Inverted</a></li>
+						</ul>
 					</div>
 				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-
-		<!-- Modal -->
-		<div class="modal fade" id="openGreyhoundModal" tabindex="-1" role="dialog" aria-labelledby="openGreyhoundPage" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						 <h4 class="modal-title">Open a Greyhound source</h4>
-
-					</div>
-					<div class="modal-body ui-panel">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
-						<button type="button" class="btn btn-primary">Open Pipeline</button>
+				<div class="labeled-controls hidden">
+					<h4>Intensity Blending</h4>
+					<h5>How much of intensity to blend with color</h5>
+					<div id="blending"></div>
+					<div class="clearfix blend-factor">
+						<div class="pull-left">All Color</div>
+						<div class="pull-right">All Intensity</div>
 					</div>
 				</div>
-				<!-- /.modal-content -->
-			</div>
-			<!-- /.modal-dialog -->
-		</div>
-
-
-
-		<!-- Modal -->
-		<div class="modal fade" id="scalesPage" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog" aria-labelledby="scalesPageLabel" aria-hidden="true">
-			<div class="modal-dialog">
-				<div class="modal-content">
-					<div class="modal-header">
-						 <h4 class="modal-title">Specify Projection</h4>
-					</div>
-					<div class="modal-body">
-						<div style='text-align: center;padding-bottom: 10px;'>
-							<h4 style="font-weight: bold">The data doesn't appear to be in a projected coordinate space.</h4>
-							<h4 style="color:#999">Please indicate what you'd like to do:</h4>
-						</div>
-						<button type="button" class="btn btn-primary btn-lg btn-block" data-value="0">Leave as is</button>
-						<button type="button" class="btn btn-success btn-lg btn-block" data-value="1">Scale X/Y to Meters, Z is in Meters</button>
-						<button type="button" class="btn btn-info btn-lg btn-block" data-value="2">Scale X/Y to Meters, Z is in Feet</button>
-					</div>
-					<div class="modal-footer">
-						<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
-					</div>
+				<div class="labeled-controls hidden">
+					<h4>Intensity Scaling</h4>
+					<h5>Narrow down on a range of intensity values, only applies to intensity values fetch from
+						point source</h5>
+					<div id="intensity"></div>
 				</div>
-				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-dialog -->
 		</div>
 
-		<!-- Modal -->
-		<div class="modal fade" id="docsPage" tabindex="-1" role="dialog" aria-labelledby="scalesPageLabel" aria-hidden="true">
-			<div class="modal-dialog modal-lg">
-				<div class="modal-content">
-					<div class="modal-header">
-						<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
-						<h4 class="modal-title">plasio Documentation</h4>
-					</div>
-					<div class="modal-body">
-					</div>
-					<div class="modal-footer">
-						<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-					</div>
+		<div class="section">
+			<div class="p-head">
+				<h3>Utilities</h3>
+			</div>
+			<div class="p-body">
+				<div class="labeled-controls">
+					<h4>Inundation</h4>
+					<h5>Enable an Inundation Plane and manipulate it using a slider</h5>
+					<div id="inun-container"></div>
 				</div>
-				<!-- /.modal-content -->
 			</div>
-			<!-- /.modal-dialog -->
 		</div>
+	</div>
+	</div>
+
+	<div id="listener"></div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="creditsPage" tabindex="-1" role="dialog" aria-labelledby="creditsPageModal"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">plas.io Data Credits</h4>
+
+				</div>
+				<div class="modal-body">
+					<h4>The following data files are to be credited by their original source</h4>
+					<ul>
+						<li>Autzen Stadium -- <a href="http://www.linkedin.com/pub/aaron-reyna/82/619/894">Aaron
+								Reyna</a>, <a href="http://www.watershedsciences.com/">Watershed Sciences, Inc.</a>
+						</li>
+						<li>St. Helens -- <a href="http://www.linkedin.com/in/howardbutler">Howard Butler</a>, <a
+								href="http://hobu.co">Hobu, Inc.</a>. USGS LiDAR + NAIP.
+						</li>
+						<li>Half Dome -- <a href="http://www.linkedin.com/in/howardbutler">Howard Butler</a>, <a
+								href="http://hobu.co">Hobu, Inc.</a> USGS LiDAR + NAIP.
+						</li>
+
+						<li>Space Shuttle -- Data courtesy of the Smithsonian National Air and Space Museum, Steven F.
+							Udvar-Hazy Center and the U.S. Army Corps of Engineers, <a
+								href="http://www.crrel.usace.army.mil/">Cold Regions Research and Engineering
+								Laboratory</a>.
+						</li>
+						<li>Cedar Falls, IA University Ave -- Iowa DOT</li>
+					</ul>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="openGreyhoundModal" tabindex="-1" role="dialog" aria-labelledby="openGreyhoundPage"
+		aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">Open a Greyhound source</h4>
+
+				</div>
+				<div class="modal-body ui-panel">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-primary">Open Pipeline</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
 
 
-		<script src="bad.js"></script>
-		<script src="client.js"></script>
-		<script type="x-shader/x-vertex" id="vertexshader">
+
+	<!-- Modal -->
+	<div class="modal fade" id="scalesPage" data-keyboard="false" data-backdrop="static" tabindex="-1" role="dialog"
+		aria-labelledby="scalesPageLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+				<div class="modal-header">
+					<h4 class="modal-title">Specify Projection</h4>
+				</div>
+				<div class="modal-body">
+					<div style='text-align: center;padding-bottom: 10px;'>
+						<h4 style="font-weight: bold">The data doesn't appear to be in a projected coordinate space.
+						</h4>
+						<h4 style="color:#999">Please indicate what you'd like to do:</h4>
+					</div>
+					<button type="button" class="btn btn-primary btn-lg btn-block" data-value="0">Leave as is</button>
+					<button type="button" class="btn btn-success btn-lg btn-block" data-value="1">Scale X/Y to Meters, Z
+						is in Meters</button>
+					<button type="button" class="btn btn-info btn-lg btn-block" data-value="2">Scale X/Y to Meters, Z is
+						in Feet</button>
+				</div>
+				<div class="modal-footer">
+					<!-- <button type="button" class="btn btn-default" data-dismiss="modal">Close</button> -->
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+	<!-- Modal -->
+	<div class="modal fade" id="docsPage" tabindex="-1" role="dialog" aria-labelledby="scalesPageLabel"
+		aria-hidden="true">
+		<div class="modal-dialog modal-lg">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+					<h4 class="modal-title">plasio Documentation</h4>
+				</div>
+				<div class="modal-body">
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				</div>
+			</div>
+			<!-- /.modal-content -->
+		</div>
+		<!-- /.modal-dialog -->
+	</div>
+
+
+	<script src="bad.js"></script>
+	<script src="client.js"></script>
+	<script type="x-shader/x-vertex" id="vertexshader">
 			uniform float pointSize;
 			uniform float intensityBlend;
 			uniform float maxColorComponent;
@@ -446,7 +439,7 @@
 				col = vec4(mix(color_source, intensity_source, intensityBlend), 1.0);
 			}
 		</script>
-		<script type="x-shader/x-fragment" id="fragmentshader">
+	<script type="x-shader/x-fragment" id="fragmentshader">
 			uniform vec4 planes[6];
 			uniform int do_plane_clipping;
 
@@ -464,16 +457,18 @@
 				gl_FragColor = col;
 			}
 		</script>
-		<script>
-			(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-			 (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-			 m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-			 })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+	<script>
+		(function (i, s, o, g, r, a, m) {
+			i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+				(i[r].q = i[r].q || []).push(arguments)
+			}, i[r].l = 1 * new Date(); a = s.createElement(o),
+				m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+		})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
 
-			ga('create', 'UA-48519660-1', 'plas.io');
-			ga('send', 'pageview');
+		ga('create', 'UA-48519660-1', 'plas.io');
+		ga('send', 'pageview');
 
-		</script>
-	</body>
+	</script>
+</body>
+
 </html>
-
