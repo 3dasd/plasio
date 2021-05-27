@@ -7,6 +7,7 @@ This was forked from [plasio](https://github.com/verma/plasio). See the original
 Build and ship files:
 
 ```sh
+nvm use v8.17.0
 gulp
 tar -czf /tmp/plasio.tar.gz build/
 scp /tmp/plasio.tar.gz asdasd.hu:/tmp/
